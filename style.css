@@ -1,10 +1,6 @@
-.card {
-    font-size: 13px
-}
+.card { font-size: 13px }
 
-.card-header {
-    text-align: center
-}
+.card-header { text-align: center }
 
 .farol {
     width: 15px;

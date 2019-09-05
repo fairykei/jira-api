@@ -5,6 +5,7 @@ var farol = {
 }
 
 function createCard() {
+<<<<<<< Updated upstream
         var impeditivo;
         custoPlano = currentIssue.customfield_10925;
         custoReal = currentIssue.customfield_10923;
@@ -32,6 +33,35 @@ function createCard() {
 
         diferencaCusto >= (diferencaEvolucao - 3) ? impeditivo = true : false;
     
+=======
+    var impeditivo;
+    custoPlano = currentIssue.customfield_10925;
+    custoReal = currentIssue.customfield_10923;
+    epm = currentIssue.customfield_10911;
+    custoReal = currentIssue.customfield_10911 * 100;
+    evolucaoPlano = currentIssue.customfield_10911 * 100;
+    evolucaoReal = currentIssue.customfield_10911 * 100;
+    fatPlano = currentIssue.customfield_10911;
+    fatReal = currentIssue.customfield_10911;
+    jira = currentIssue.customfield_10913;
+    proximaEntrega = currentIssue.customfield_10301;
+    rentPlano = currentIssue.customfield_10912 * 100;
+    rentReal = currentIssue.customfield_10911 * 100;
+    sponsor = currentIssue.customfield_10933;
+    titulo = currentIssue.summary;
+    diferencaCusto = custoReal / custoPlano;
+    diferencaEvolucao = evolucaoReal / evolucaoPlano;
+    link = "https://zurich.jira.stefanini.io/browse/" + key;
+
+    if (currentIssue.assignee != null) {
+        responsavel = currentIssue.assignee.displayName;
+    } else {
+        responsavel = "Sem responsável";
+    }
+
+    diferencaCusto >= (diferencaEvolucao - 3) ? impeditivo = true : false;
+
+>>>>>>> Stashed changes
     html = ' <div id="task" class="card my-1 rounded-lg" draggable="true" style="z-index:1">';
     html += ' <div id="" class="card-body p-2 column">';
     html += '    <div class="row">';
@@ -39,7 +69,7 @@ function createCard() {
     html += impeditivo ? '<div class="rounded bg-warning d-block text-center mx-3 mb-1">Impeditivo</div>' : "";
     html += '       </div>';
     html += '       <div class="col-12 mt-1">';
-    html += '           <img src="assets/z.png" draggable="false">';
+    html += '           <img src="https://stefaninilatam.sharepoint.com/sites/sharepointdev/364projetos/Documentos%20Compartilhados/z.png" draggable="false">';
     html += '          <p class="card-text d-inline">';
     html += '               <b>GP:</b> ' + responsavel;
     html += '           </p>';
@@ -152,17 +182,18 @@ var settings = {
     "async": true,
     "dataType": "json",
     "crossDomain": true,
-    "url": "https://jiralink.atlassian.com/rest/api/latest/search?jql=project=PED&fields=summary,customfield_10933,customfield_10925,customfield_10923,customfield_10912,customfield_10911,customfield_10913,customfield_10301,status,assignee",
+    "withCredentials": true,
+    "url": "https://zurich.jira.stefanini.io/rest/api/latest/search?jql=project=PED&fields=summary,customfield_10933,customfield_10925,customfield_10923,customfield_10912,customfield_10911,customfield_10913,customfield_10301,status,assignee",
     "method": "GET",
     "headers": {
         "content-type": "application/json",
-        "authorization": "Basic (auth token here)",
-        "Access-Control-Allow-Origin": "*"
-    }
+        "authorization": "Basic bG9zb3V6YTpxdHBpZTg2",
+        "Access-Control-Allow-Origin": "https://stefaninilatam.sharepoint.com"
+    },
 }
 
 $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
     //Setando os cards  
     for (i = 0; i < response.issues.length; i++) {
         key = response.issues[i].key;
