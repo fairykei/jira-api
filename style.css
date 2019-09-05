@@ -1,0 +1,17 @@
+.card {
+    font-size: 13px
+}
+
+.card-header {
+    text-align: center
+}
+
+.farol {
+    width: 15px;
+    height: 15px;
+}
+
+.scroll {
+    max-height: 500px;
+    overflow-y: auto;
+}
