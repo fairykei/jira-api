@@ -5,32 +5,33 @@ var farol = {
 }
 
 function createCard() {
+        var impeditivo;
+        custoPlano = currentIssue.customfield_10925;
+        custoReal = currentIssue.customfield_10923;
+        epm = currentIssue.customfield_10911;
+        custoReal = currentIssue.customfield_10911 * 100;
+        evolucaoPlano = currentIssue.customfield_10911 * 100;
+        evolucaoReal = currentIssue.customfield_10911 * 100;
+        fatPlano = currentIssue.customfield_10911;
+        fatReal = currentIssue.customfield_10911;
+        jira = currentIssue.customfield_10913;
+        proximaEntrega = currentIssue.customfield_10301;
+        rentPlano = currentIssue.customfield_10912 * 100;
+        rentReal = currentIssue.customfield_10911 * 100;
+        sponsor = currentIssue.customfield_10933;
+        titulo = currentIssue.summary;
+        diferencaCusto = custoReal / custoPlano;
+        diferencaEvolucao = evolucaoReal / evolucaoPlano;
+        link = "https://zurich.jira.stefanini.io/browse/" + key;
+        
+        if (currentIssue.assignee != null) {
+            responsavel = currentIssue.assignee.displayName;
+        } else {
+            responsavel = "Sem responsável";
+        }   
 
-    if (currentIssue.assignee != null) {
-        responsavel = currentIssue.assignee.displayName;
-    } else {
-        responsavel = "Sem responsável";
-    }
-
-    custoPlano = currentIssue.customfield_10925;
-    custoReal = currentIssue.customfield_10923;
-    epm = currentIssue.customfield_10911;
-    custoReal = currentIssue.customfield_10911 * 100;
-    evolucaoPlano = currentIssue.customfield_10911 * 100;
-    evolucaoReal = currentIssue.customfield_10911 * 100;
-    fatPlano = currentIssue.customfield_10911;
-    fatReal = currentIssue.customfield_10911;
-    impeditivo = true;
-    jira = currentIssue.customfield_10913;
-    proximaEntrega = currentIssue.customfield_10301;
-    rentPlano = currentIssue.customfield_10912 * 100;
-    rentReal = currentIssue.customfield_10911 * 100;
-    sponsor = currentIssue.customfield_10933;
-    titulo = currentIssue.summary;
-    diferencaCusto = custoReal / custoPlano;
-    diferencaEvolucao = evolucaoReal / evolucaoPlano;
-    link = "https://https://jiralink.atlassian.com/browse/" + key;
-
+        diferencaCusto >= (diferencaEvolucao - 3) ? impeditivo = true : false;
+    
     html = ' <div id="task" class="card my-1 rounded-lg" draggable="true" style="z-index:1">';
     html += ' <div id="" class="card-body p-2 column">';
     html += '    <div class="row">';
