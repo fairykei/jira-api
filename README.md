@@ -1,4 +1,4 @@
-# api-kanban
+# rest-kanban
 custom kanban receiving info from jira.
 
 ## important
